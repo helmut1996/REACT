@@ -5,7 +5,7 @@ import { TodoList } from "./Components/TodoList";
 import './styles/TodoItem.css'
 import React from 'react'
 
-const defaultTodo = [
+/*const defaultTodo = [
   {text: 'pelar cebolla', completed: true},
   {text: 'ver el curso de react js de platzi', completed: true},
   {text: 'ver el capitulo de one piece', completed: false},
@@ -14,11 +14,28 @@ const defaultTodo = [
 ]
 
 
+localStorage.setItem('TODOS_V1',defaultTodo);
+localStorage.removeItem('TODOS_V1');
+*/
+
+
+
 
 const PrimerComponent = () => {
 
+  // utilizando  localStorage
+  let localStorageTodos = localStorage.getItem('TODOS_V1')
+  let parsedTodos;
+
+  if(!localStorageTodos){
+    localStorage.setItem('TODOS_V1',JSON.stringify([]));
+    parsedTodos = [];
+  }else{
+    parsedTodos= JSON.parse(localStorageTodos);
+  }
+
   
-const [todos,setTodos] = React.useState(defaultTodo)
+const [todos,setTodos] = React.useState(parsedTodos)
 
 const [filterValue,setFilter]= React.useState('')
 
@@ -34,13 +51,20 @@ const TodoCompleted= todos.filter(
     }
   )
 
+
+const SaveTodoStorage = (newTodos)=>{
+localStorage.setItem('TODOS_V1',JSON.stringify (newTodos));
+setTodos(newTodos);
+}
+
+
 const TodoComplete= (text)=>{
   const NewTodo =[...todos];
   const todoIndex= NewTodo.findIndex(
     (todo)=> todo.text == text
   );
     NewTodo[todoIndex].completed= true;
-setTodos(NewTodo)
+SaveTodoStorage(NewTodo)
 }
 
 const TodoDelete= (text)=>{
@@ -49,7 +73,7 @@ const TodoDelete= (text)=>{
     (todo)=> todo.text == text
   );
     NewTodo.splice(todoIndex,1);
-    setTodos(NewTodo)
+    SaveTodoStorage(NewTodo)
 }
 
 
