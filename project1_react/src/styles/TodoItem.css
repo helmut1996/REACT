@@ -1,0 +1,25 @@
+.Icon{
+    cursor: pointer;
+    font-weight:bold; 
+}
+.Icon-check{
+
+padding-right: 10px;
+}
+.Icon-check--active{
+color: green;
+}
+
+.TodoItem-p--complete{
+    text-decoration: line-through;
+}
+
+.Icon-delete{
+    position:absolute;
+    top: 24px;
+    right: 10px;
+}
+
+.Icon-delete:hover{
+    color: red;
+}
