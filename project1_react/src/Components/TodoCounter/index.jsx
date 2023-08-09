@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/TofoCounter.css'
+import './TofoCounter.css'
 
 const TodoCounter = ({total,completed}) => {
   return (
