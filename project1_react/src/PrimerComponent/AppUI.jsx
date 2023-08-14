@@ -4,6 +4,9 @@ import { TodoFilter } from "../Components/TodoFilter";
 import { TodoForm } from "../Components/TodoForm";
 import { TodoList } from "../Components/TodoList";
 import { TodoItem } from "../Components/ToddItem";
+import { LoadingTodo } from '../Components/LoadingTodo';
+import { ErrorTodo } from '../Components/ErrorTodo';
+import { HomeTodo } from '../Components/HomeTodo';
 import "../styles/TodoItem.css";
 
  const AppUI = (
@@ -20,7 +23,7 @@ import "../styles/TodoItem.css";
     }
     ) => {
     return (
-        <React.Fragment>
+        <>
           <div className="row">
             <div className="col-md-6">
               <TodoForm />
@@ -33,10 +36,10 @@ import "../styles/TodoItem.css";
               <TodoFilter filterValue={filterValue} setFilter={setFilter} />
     
               <TodoList>
-              {loading &&  <p>Cargando...</p>}
-              {error && <p>Paso un  Error</p>}
-              {(!loading && SerachedTodo.length === 0 )
-              && <p>Crear una  tarea!!!</p>}
+              {loading &&  <LoadingTodo/>}
+              {error && <ErrorTodo/>}
+              {(loading== false && SerachedTodo.length === 0 )
+              && <HomeTodo/>}
 
 
 
@@ -52,7 +55,7 @@ import "../styles/TodoItem.css";
               </TodoList>
             </div>
           </div>
-        </React.Fragment>
+        </>
       );
 }
 
