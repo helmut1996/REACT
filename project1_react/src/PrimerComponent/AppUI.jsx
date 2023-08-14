@@ -8,6 +8,8 @@ import "../styles/TodoItem.css";
 
  const AppUI = (
     {
+            loading,
+            error,
             TodoCompleted,
             Totaltodo,
             filterValue,
@@ -31,6 +33,13 @@ import "../styles/TodoItem.css";
               <TodoFilter filterValue={filterValue} setFilter={setFilter} />
     
               <TodoList>
+              {loading &&  <p>Cargando...</p>}
+              {error && <p>Paso un  Error</p>}
+              {(!loading && SerachedTodo.length === 0 )
+              && <p>Crear una  tarea!!!</p>}
+
+
+
                 {SerachedTodo.map((todo) => (
                   <TodoItem
                     key={todo.text}

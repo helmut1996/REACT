@@ -16,7 +16,12 @@ localStorage.removeItem('TODOS_V1');
 */
 
 const PrimerComponent = () => {
-  const [todos, saveTodos] = useLocalStorage("TODOS_V1", []);
+  const {
+   item: todos,
+   SaveItemStorage: saveTodos,
+  loading,
+  error,
+} = useLocalStorage("TODOS_V1", []);
 
   const [filterValue, setFilter] = React.useState("");
 
@@ -45,6 +50,8 @@ const PrimerComponent = () => {
 
   return (
     <AppUI
+    loading={loading}
+    error={error}
       TodoCompleted={TodoCompleted}
       Totaltodo={Totaltodo}
       filterValue={filterValue}
